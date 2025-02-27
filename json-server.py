@@ -31,15 +31,15 @@ class JSONServer(HandleRequests):
                 response_body = retrieve_hauler(url["pk"])
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
-            response_body = list_haulers()
+            response_body = list_haulers(url)
             return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         elif url["requested_resource"] == "ships":
             if url["pk"] != 0:
-                response_body = retrieve_ship(url["pk"])
+                response_body = retrieve_ship(url["pk"], url)
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
-            response_body = list_ships()
+            response_body = list_ships(url)
             return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         else:
